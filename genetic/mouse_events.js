@@ -37,49 +37,19 @@ let submit = document.getElementById('submt');
 submit.addEventListener('click',function(event){
    
     run_generic_algor(size_of_population, quantity_of_gen, mutation_procent, arr);
-    draw_lines(bestPath,arr);
-    console.log('успешно');
 });
 
 
-class Coords {
-    constructor(x, y) {
-        this.x = Math.min(Math.max(x, 10), 295);
-        this.y = Math.min(Math.max(y, 10), 295);
-    }
-}
-
-dots = new Coords(0,0);
-
 function mouseMove(event) {
-   
-    let x = event.clientX - (point.offsetWidth / 2);
-    let y = event.clientY - (point.offsetHeight / 2);
-
-
-    dots = new Coords(x, y);
-
-  
-    arr.push([dots.x, dots.y]);
-
-    let clone = point.cloneNode(true);
-    setCoords(dots.x, dots.y, clone);
-    block.appendChild(clone);
-
-
+    let rect = block.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+    arr.push([x, y]);
+    generate_circle(x, y);
 }
+
 block.addEventListener('click', function(event) {
     if (event.target === block) {
         mouseMove(event);
     }
-});
-
-document.addEventListener('mousedown', function(event) {
-    if (event.target === block) {
-        document.addEventListener('mousemove', mouseMove);
-    }
-});
-
-document.addEventListener('mouseup', function(event) {
-    document.removeEventListener('mousemove', mouseMove);
 });

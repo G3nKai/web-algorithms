@@ -7,22 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="desk">
-    <div id="plank">
-    <div id='circle'></div>
-    <div id="line"></div>
-    </div>
+    <div id="header"><h1>Генетический код</h1></div>
+    <div id="center_canvas"><canvas id="plank" width="700px" height="500px"></canvas></div>
     <span><br>Выбрать разммер кисти</span><input name = "range-in" type="range" min="7" max="50" id="range" value="10"><label id="rangeVal">10</label>
-    </div>
-    <span><br>укажите количество популяции</span><input name = "set_population" type="range" min="5" max="20" id="population" value="7"><label id="set_population">7</label>
-    <span><br>укажите количество поколений</span><input name = "gen" type="range" min="5" max="50" id="gen" value="5"><label id="set_gen">5</label>
+    <span><br>укажите количество популяции</span><input name = "set_population" type="range" min="5" max="100" id="population" value="27"><label id="set_population">7</label>
+    <span><br>укажите количество поколений</span><input name = "gen" type="range" min="5" max="100" id="gen" value="25"><label id="set_gen">5</label>
     <span><br>Процент мутации</span><input name = "mutation" type="range" min="0" max="100" id="mutation" value="20"><label id="set_mutation">20</label>
     <input type="submit" name="submit" value="готово" id="submt">
-    <script type="text/javascript" src="genetic_alg.js"></script>
-    <script type="text/javascript" src="draw.js"></script>
+    
     <script type="text/javascript" src="input.js"></script>
+    <script type="text/javascript" src="genetic_alg.js"></script>
     <script type="text/javascript" src="mouse_events.js"></script>
-    <script type="text/javascript" src="main.js"></script>    
+    <script type="text/javascript" src="main.js"></script>
     
 </body>
 </html>
