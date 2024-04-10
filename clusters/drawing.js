@@ -4,6 +4,10 @@ const color = 'red';
 
 var pointSize = 5;//размер точки
 
+var points = [];//координаты ОТМЕЧЕННЫХ точек
+const colours = ['blue', 'brown', 'green', 'black', 'gray',
+                 'purple', 'yellow', 'orange'];
+
 function drawPoint(x, y) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, pointSize, pointSize);
