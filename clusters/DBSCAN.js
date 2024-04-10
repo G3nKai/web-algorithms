@@ -23,6 +23,8 @@ preValueEps.addEventListener("input", function() {
 
 //minPTS && eps считываются с мейн страницы
 //сюда передаются var points, eps, minPTS 
+//в этой функции точки у которых точек >= minPTS принадлежат кластерам
+//если меньше, то просто шум (noise)
 function DBSCAN() {
     
 }
