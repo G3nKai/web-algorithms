@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Pixel Coloring</title>
+    <style>
+        #canvas {border:3px solid #199991;}
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="188" height="188"></canvas>
+    <button onclick="clearCanvas()">Clear Canvas</button>
+    <input type="range" min="1" max="8" id="k">
+    <p>Selected Value: <span id="selectedValue">1</span></p>
+    <button onclick="kmeans()">kmeans</button>
+    <button onclick="jerach()">jerach</button>
+    <script src="test.js"></script>
+    <script src="jerarch.js"></script>
+</body>
+</html>
