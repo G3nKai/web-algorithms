@@ -21,10 +21,8 @@ preValueEps.addEventListener("input", function() {
     SelectedEps.textContent = eps;
 });
 
-//(DB, distFunc, Q, epsilon) DB===points[] Q===dot  dist===euclidianDistance epsilon===задается на сайте пользователем
-function RangeQuery() {
-    let neighbours = [];
-    for (let i = 0, len = points.length; i < len; i++) {
-
-    }
+//minPTS && eps считываются с мейн страницы
+//сюда передаются var points, eps, minPTS 
+function DBSCAN() {
+    
 }
