@@ -12,17 +12,19 @@
     <canvas id="canvas" width="188" height="188"></canvas>
     <button onclick="clearCanvas()">Clear Canvas</button>
     <input type="range" min="1" max="8" id="k">
-    <p>Selected Value: <span id="selectedValue">1</span></p>
+    <p>Selected Value: <span id="selectedValue"></span></p>
     <button onclick="kmeans()">kmeans</button>
     <button onclick="jerach()">jerach</button>
 
-    <div>Алгоритм DBSCAN</div>
-    <input type="range" min="1" max="30" id="PTS">
-    <p>MinPTS <span id="minPTS">1</span></p>
-
+    <h1>Алгоритм DBSCAN</h1>
+    <input type="range" min="1" max="30" id="PTS" >
+    <p>MinPTS: <span id="SelectedPTS"></span></p>
+    <input type="range" min="2" max="15" id="eps">
+    <p>eps: <span id='SelectedEps'></span></p>
 
     <script src="test.js"></script>
     <script src="jerarch.js"></script>
     <script src="drawing.js"></script>
+    <script src="DBSCAN.js"></script>
 </body>
 </html>
