@@ -44,8 +44,9 @@ function DBSCAN() {
             }
         }
     }
-    console.log(clusters); 
-    colorizeClusters(clusters);
+    let noCol = colorizeClusters(clusters);
+    console.log(noCol);
+    noise(noCol);
 }
 
 function rangeQuery(point) {
@@ -92,6 +93,9 @@ function EuclideanDistance(point1, point2) {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
-function noise(visited) {//окраска шума
-
+function noise(unVisited) {//окраска шума
+    for (let i = 0, len = unVisited.length; i < len; i++) { 
+        ctx.fillStyle = color;
+        ctx.fillRect(unVisited[i][0], unVisited[i][1], pointSize, pointSize); 
+    }
 }

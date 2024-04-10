@@ -32,7 +32,7 @@ function jerach() {
     }
     colorizeClusters(clusters);
     
-    return clusters;
+    return clusters; 
 }
 
 // функция для расчета центра кластера
@@ -49,11 +49,18 @@ function calculateCenter(cluster) {
 }
 
 function colorizeClusters(clusters) {
+    let noColorized = [];
+
+    for (let i = 0, len = points.length; i < len; i++) {
+        noColorized[i] = points[i];
+    }
+
     for (let i = 0; i < clusters.length; i++) {
         const clusterColor = colours[i];
 
         for (let j = 0; j < clusters[i].length; j++) {
             const point = clusters[i][j];
+            noColorized.splice(noColorized.indexOf(point), 1);
             const x = point[0];
             const y = point[1];
             
@@ -61,4 +68,5 @@ function colorizeClusters(clusters) {
             ctx.fillRect(x, y, pointSize, pointSize);
         }
     }
+    return noColorized; 
 }
