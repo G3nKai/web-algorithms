@@ -1,4 +1,4 @@
-function jerach() {
+function jerach() {//КВАДРАТЫ
     let clusters = [];
     let centers = []; //изначальные центры
 

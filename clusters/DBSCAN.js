@@ -1,4 +1,4 @@
-var minPTSD = document.getElementById("PTS");
+var minPTSD = document.getElementById("PTS");//КРУЖОЧКИ
 var selectedPTS = document.getElementById("SelectedPTS");
 
 var minPTS = minPTSD.value;
