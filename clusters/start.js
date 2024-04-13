@@ -1,5 +1,8 @@
 var runner = document.getElementById('start');
 
 function run() {
-    console.log(runner);
+    let temp = runner.value;
+    if (temp == 'kmeans') kmeans();
+    else if (temp == 'jerarch') jerach();
+    else DBSCAN();
 }
