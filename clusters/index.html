@@ -9,19 +9,28 @@
     </style>
 </head>
 <body>
-    <canvas id="canvas" width="188" height="188"></canvas>
+    <canvas id="canvas" width="450" height="450"></canvas>
     <button onclick="clearCanvas()">Clear Canvas</button>
-    <input type="range" min="1" max="8" id="k">
+
+    <select required id="start">
+        <option value='kmeans'>K-Средние</option>
+        <option value='jerarch'>Иерархическая кластеризация</option>
+        <option value='DBSCANs'>DBSCAN</option>
+    </select>
+
+    <button onclick="run()">Запустить алгоритм</button>
+
+    <input type="range" min="1" max="12" id="k">
     <p>Selected Value: <span id="selectedValue"></span></p>
-    <button onclick="kmeans()">kmeans</button>
-    <button onclick="jerach()">jerach</button>
+    <!--<button onclick="kmeans()">kmeans</button>
+    <button onclick="jerach()">jerach</button>-->
 
     <h1>Алгоритм DBSCAN</h1>
-    <input type="range" min="1" max="30" id="PTS" >
+    <input type="range" min="1" max="10" id="PTS" >
     <p>MinPTS: <span id="SelectedPTS"></span></p>
-    <input type="range" min="2" max="15" id="eps">
+    <input type="range" min="2" max="50" id="eps">
     <p>eps: <span id='SelectedEps'></span></p>
-    <button onclick="DBSCAN()">DBSCAN</button>
+    <!--<button onclick="DBSCAN()">DBSCAN</button>-->
     <script src="test.js"></script>
     <script src="jerarch.js"></script>
     <script src="drawing.js"></script>

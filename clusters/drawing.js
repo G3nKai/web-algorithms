@@ -4,9 +4,12 @@ const color = 'red';
 
 var pointSize = 5;//размер точки
 
+
 var points = [];//координаты ОТМЕЧЕННЫХ точек
-const colours = ['blue', 'brown', 'green', 'black', 'gray',
-                 'purple', 'yellow', 'orange'];
+const colours = ['#FFC0CB', 'blue', 'brown', '#FFD700',
+'green', 'black', '#FF69B4', 'gray',
+'purple', '#FFA07A', 'yellow', 'orange', 
+'#C71585', '#BDB76B', '#6A5ACD', '#808000'];
 
 function drawPoint(x, y) {
     ctx.fillStyle = color;
