@@ -10,6 +10,9 @@
             display: block;
             margin: 0 auto;
         }
+        .first{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -21,22 +24,23 @@
         <option value='jerarch'>Иерархическая кластеризация</option>
         <option value='DBSCANs'>DBSCAN</option>
     </select>
-
     <button onclick="clearCanvas()">Clear Canvas</button>
     <button onclick="run()">Запустить алгоритм</button>
     </div>
 
     <p></p>
 
-    <div class="jerach and kmeans">
+    <div id="algos"></div>
+
+    <div id="jerach and kmeans">
         Количество кластеров: <span id="selectedValue"></span>
         <input type="range" min="1" max="12" id="k">
     </div>
 
 
-    <div>
+    <div id="dbscam" class="first">
     Кучность точек: <span id="SelectedPTS"></span>
-    <input type="range" min="1" max="10" id="PTS" >
+    <input type="range" min="1" max="10" id="PTS">
     <p></p>
     Радиус (в пикселях): <span id='SelectedEps'></span>
     <input type="range" min="2" max="50" id="eps">

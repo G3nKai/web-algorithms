@@ -39,3 +39,35 @@ kk.addEventListener("input", function() {
     k = this.value;
     selectedValue.textContent = k;
 });
+
+
+
+const selector = document.getElementById('start');
+const kmeansDiv = document.getElementById('jerach and kmeans');
+const jerarchDiv = document.getElementById('jerach and kmeans');
+const dbscanDiv = document.getElementById('dbscam');
+
+selector.addEventListener('change', function() {
+    const selectedOption = selector.value;
+    
+    // Скрыть все div строки
+    kmeansDiv.style.display = 'none';
+    jerarchDiv.style.display = 'none';
+    dbscanDiv.style.display = 'none';
+
+    // Показать только выбранный div строку
+    switch (selectedOption) {
+        case 'kmeans':
+            kmeansDiv.style.display = 'block';
+            break;
+        case 'jerarch':
+            jerarchDiv.style.display = 'block';
+            break;
+        case 'DBSCANs':
+            dbscanDiv.style.display = 'block';
+            break;
+        default:
+            kmeansDiv.style.display = 'block';
+            break;
+    }
+});
