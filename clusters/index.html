@@ -5,32 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кластеризация</title>
     <style>
-        #canvas {border:3px solid #199991;}
+        #canvas {
+            border:3px solid #199991;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
     <canvas id="canvas" width="450" height="450"></canvas>
-    <button onclick="clearCanvas()">Clear Canvas</button>
 
+    <div class="settings">
     <select required id="start">
         <option value='kmeans'>K-Средние</option>
         <option value='jerarch'>Иерархическая кластеризация</option>
         <option value='DBSCANs'>DBSCAN</option>
     </select>
 
+    <button onclick="clearCanvas()">Clear Canvas</button>
     <button onclick="run()">Запустить алгоритм</button>
+    </div>
 
-    <input type="range" min="1" max="12" id="k">
-    <p>Selected Value: <span id="selectedValue"></span></p>
-    <!--<button onclick="kmeans()">kmeans</button>
-    <button onclick="jerach()">jerach</button>-->
+    <p></p>
 
-    <h1>Алгоритм DBSCAN</h1>
+    <div class="jerach and kmeans">
+        Количество кластеров: <span id="selectedValue"></span>
+        <input type="range" min="1" max="12" id="k">
+    </div>
+
+
+    <div>
+    Кучность точек: <span id="SelectedPTS"></span>
     <input type="range" min="1" max="10" id="PTS" >
-    <p>MinPTS: <span id="SelectedPTS"></span></p>
+    <p></p>
+    Радиус (в пикселях): <span id='SelectedEps'></span>
     <input type="range" min="2" max="50" id="eps">
-    <p>eps: <span id='SelectedEps'></span></p>
-    <!--<button onclick="DBSCAN()">DBSCAN</button>-->
+    </div>
+
     <script src="test.js"></script>
     <script src="jerarch.js"></script>
     <script src="drawing.js"></script>

@@ -1,6 +1,7 @@
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 import numpy as np 
+import pandas as pd
 
 X, y = datasets.make_classification()
 X_train, X_test, y_train, y_test = train_test_split(X, y)
@@ -32,7 +33,7 @@ class DecisionTree:
         ps = hist / len(y)
         entr = -np.sum([p * np.log2(p) for p in ps if p > 0])
         gin = np.sum([p * (1 - p) for p in ps])
-        return gin
+        return entr
     
     def most_common(self, y):
         labels = np.unique(y)
@@ -92,8 +93,5 @@ class DecisionTree:
             return self.travers_tree(x, tree.left)
         return self.travers_tree(x, tree.right)
         
-clf = DecisionTree()
-clf.fit(X_train, y_train)
-
-predict = clf.predict(X_test)
-print(np.sum(predict == y_test) / len(y_test))
+pima = pd.read_csv("diabetes.csv")
+pima.head()
