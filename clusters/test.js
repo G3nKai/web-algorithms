@@ -55,8 +55,15 @@ function kmeans() {
             dist[j] = euclideanDistance(points[i], centers[j]);
         }
         arr[i] = ([points[i], colours[dist.indexOf(Math.min(...dist))]]);
+        //ctx.fillStyle = arr[i][1];
+        //ctx.fillRect(arr[i][0][0], arr[i][0][1], pointSize, pointSize);
+        ctx.beginPath();
+        ctx.arc(arr[i][0][0], arr[i][0][1], pointSize, 0, 2 * Math.PI, false);
         ctx.fillStyle = arr[i][1];
-        ctx.fillRect(arr[i][0][0], arr[i][0][1], pointSize, pointSize);
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#003300';
+        ctx.stroke();
     }
     console.log("ПЕРВОНАЧАЛЬНО:", arr, centers);
 
@@ -92,14 +99,28 @@ function kmeans() {
                 dist[j] = euclideanDistance(points[i], centre[j]);
             }
             arr[i] = ([points[i], colours[dist.indexOf(Math.min(...dist))]]);
+            //ctx.fillStyle = arr[i][1];
+            //ctx.fillRect(arr[i][0][0], arr[i][0][1], pointSize, pointSize);
+            ctx.beginPath();
+            ctx.arc(arr[i][0][0], arr[i][0][1], pointSize, 0, 2 * Math.PI, false);
             ctx.fillStyle = arr[i][1];
-            ctx.fillRect(arr[i][0][0], arr[i][0][1], pointSize, pointSize);
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#003300';
+            ctx.stroke();
         }
 
         if (wcss <= calculateWCSS(arr, centre)) {
             for (let i = 0; i < k; i++) {
+                //ctx.fillStyle = colours[i];
+                //ctx.fillRect(centre[i][0], centre[i][1], 2, 2);
+                ctx.beginPath();
+                ctx.arc(centre[i][0], centre[i][1], pointSize, 0, 2 * Math.PI, false);
                 ctx.fillStyle = colours[i];
-                ctx.fillRect(centre[i][0], centre[i][1], 2, 2);
+                ctx.fill();
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = '#003300';
+                ctx.stroke();
             }
             return;
         }
@@ -118,13 +139,27 @@ function kmeans() {
             dist[prefinal] = euclideanDistance(points[i], centers[j]);
         }
         arr[final] = ([points[final], colours[dist.indexOf(Math.min(...dist))]]);
+        //ctx.fillStyle = arr[final][1];
+        //ctx.fillRect(arr[final][0][0], arr[final][0][1], pointSize, pointSize);
+        ctx.beginPath();
+        ctx.arc(arr[final][0][0], arr[final][0][1], pointSize, 0, 2 * Math.PI, false);
         ctx.fillStyle = arr[final][1];
-        ctx.fillRect(arr[final][0][0], arr[final][0][1], pointSize, pointSize);
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#003300';
+        ctx.stroke();
     }
 
     for (let i = 0; i < k; i++) {
+        //ctx.fillStyle = colours[i];
+        //ctx.fillRect(centre[i][0], centre[i][1], 2, 2);
+        ctx.beginPath();
+        ctx.arc(centre[i][0], centre[i][1], pointSize, 0, 2 * Math.PI, false);
         ctx.fillStyle = colours[i];
-        ctx.fillRect(centre[i][0], centre[i][1], 2, 2);
+        ctx.fill();
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = '#003300';
+        ctx.stroke();
     }
 }
 
