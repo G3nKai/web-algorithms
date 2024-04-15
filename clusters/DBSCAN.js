@@ -44,7 +44,7 @@ function DBSCAN() {
             }
         }
     }
-    let noCol = colorizeClusters(clusters);
+    let noCol = colorizeClustersForDBSCAN(clusters);
     console.log(noCol);
     noise(noCol);
 }
@@ -96,6 +96,52 @@ function EuclideanDistance(point1, point2) {
 function noise(unVisited) {//окраска шума
     for (let i = 0, len = unVisited.length; i < len; i++) { 
         ctx.fillStyle = color;
-        ctx.fillRect(unVisited[i][0], unVisited[i][1], pointSize, pointSize); 
+        const point = unVisited[i];
+        const x = point[0];
+        const y = point[1];
+        
+        // Вызываем функцию strokeStar для определения цвета
+        strokeStar(x, y, 5, 5, 0.5); // Здесь используем координаты точки и цвет кластера
     }
+}
+
+function colorizeClustersForDBSCAN(clusters) {
+    let noColorized = [];
+
+    for (let i = 0, len = points.length; i < len; i++) {
+        noColorized[i] = points[i];
+    }
+
+    for (let i = 0; i < clusters.length; i++) {
+        const clusterColor = colours[i]; // Выбираем цвет для кластера
+
+        for (let j = 0; j < clusters[i].length; j++) {
+            const point = clusters[i][j];
+            noColorized.splice(noColorized.indexOf(point), 1);
+            const x = point[0];
+            const y = point[1];
+            
+            // Вызываем функцию strokeStar для определения цвета
+            ctx.fillStyle = clusterColor;
+            strokeStar(x, y, 5, 5, 0.5); // Здесь используем координаты точки и цвет кластера
+        }
+    }
+    return noColorized; 
+}
+
+
+function strokeStar(x, y, r, n, inset) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.translate(x, y);
+    ctx.moveTo(0,0-r);
+    for (var i = 0; i < n; i++) {
+        ctx.rotate(Math.PI / n);
+        ctx.lineTo(0, 0 - (r*inset));
+        ctx.rotate(Math.PI / n);
+        ctx.lineTo(0, 0 - r);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
 }
