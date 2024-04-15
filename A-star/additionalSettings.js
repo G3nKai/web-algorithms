@@ -9,7 +9,6 @@ function randomNumber(from, to)
     return from + Math.floor(Math.random() * (to - from));
 }
 
-//кнопки
 document.querySelector('#getInfoColors').onclick = function() {
     alert("Информация о цветах:\n" +
         "Зеленый - стартовая позиция.\n" +
