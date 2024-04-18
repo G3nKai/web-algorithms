@@ -1,7 +1,3 @@
-function start() {
-    if (flag) makeDecision();
-}
-
 async function makeDecision() {
     let string = document.getElementById('input_data').value;
     let array = string.split(",");

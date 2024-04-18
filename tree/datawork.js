@@ -23,5 +23,4 @@ function recieveData(csvText, sep = ","){
 let treeRoot = document.getElementById("root");
 const FILE = document.getElementById('file_input');
 
-let flag = true;
 let root;
