@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Муравьиный алгоритм</title>
+        <link rel="stylesheet" href="antstyle.css">
+    </head>
+    <body>
+        <div class="allContent">
+
+            <div id="header"><h1>Муравьиный алгоритм</h1></div>
+            <div class="back">
+                <p></p>
+                <a class="back-link" href="#" target="_self"><b>← На главную</b></a>
+                <p></p>
+            </div>
+
+            <div class="settings">
+                <div class="control-buttons">
+                    <button id="getInfoAlgo">Узнать об алгоритме</button>
+                    <button id="submt">Запуск алгоритма</button>
+                    <button id="clearCanv">Очистить поле</button>
+                </div>
+
+                <canvas id="plank" width="500px" height="500px"></canvas>
+                
+                <div class="sliders">
+                    <span><br>Параметр обновления ферамонов:</span><input class = "updatePheromonee" type="range" min="1" max="50" id="update" value="8"><label id="set_update">8</label>
+                    <span><br>Вес расстояния:</span><input class = "betaa" type="range" min="1" max="10" id="beta" value="2"><label id="set_beta">2</label>
+                    <span><br>Cкорость испарения ферамонов:</span><input class = "speedd" type="range" min="1" max="9" id="speed" value="2"><label id="set_speed">0.2</label>
+                    <span><br>Количество проходов муравьев:</span><input class = "countt" type="range" min="1000" max="9000" id="count" value="7000"><label id="set_count">7000</label>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="Antsinput.js"></script>
+    <script type="text/javascript" src="AntsAlgor.js"></script>
+    <script type="text/javascript" src="Ants_main.js"></script>
+</html>
