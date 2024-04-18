@@ -85,7 +85,7 @@ function checkingDirections(x, y) {
 }
 
 document.querySelector('#generateLabirynth').onclick = async function() {
-    changeAccesebility("disable", "all");
+    changeAccesebility("disable");
     fillTheSpaceWithWalls();
 
     let stPosition = startOfClearing();
@@ -109,5 +109,5 @@ document.querySelector('#generateLabirynth').onclick = async function() {
         queue = createQueueOfSuitablePoints(queue, x, y);
     }
     createNewPoints();
-    changeAccesebility("enable", "all");
+    changeAccesebility("enable");
 }

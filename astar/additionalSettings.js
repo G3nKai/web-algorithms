@@ -16,8 +16,8 @@ document.querySelector('#getInfoColors').onclick = function() {
         "Оранжевый - найденный путь.\n" + 
         "Чёрный - стена.\n" + 
         "Белый - пустая клетка.\n" +
-        "Синий - проверенный путь.\n" +
-        "Желтый - точка рассматривается, но ещё не проверена." );
+        "Синий - точка рассматривается, но ещё не проверена.\n" +
+        "Желтый - проверенный путь." );
 }
 
 document.querySelector('#getInfoAlgo').onclick = function() {
@@ -46,21 +46,15 @@ function changeCellType() {
     }
 }
   
-function changeAccesebility(action, amount) {
+function changeAccesebility(action) {
     if (action === "enable") {
         document.getElementById("findPathButton").hidden = "";
         document.getElementById("generateLabirynth").hidden = "";
         document.getElementById("selectorCellType").style.pointerEvents = "all";
-        if (amount === "all") {
-            document.getElementById("gridSizeSlider").style.pointerEvents = "all";
-        }
     }
     else if (action === "disable") {
         document.getElementById("findPathButton").hidden = "hidden";
         document.getElementById("generateLabirynth").hidden = "hidden";
         document.getElementById("selectorCellType").style.pointerEvents = "none";
-        if (amount === "all") {
-            document.getElementById("gridSizeSlider").style.pointerEvents = "none";
-        }
     }
 }

@@ -58,7 +58,7 @@ function findNeighboursOfPoint(point){ //находит соседей точк�
 }
 
 document.querySelector("#findPathButton").onclick = async function(){
-    changeAccesebility("disable", "all");
+    changeAccesebility("disable");
 
     let startPoint = document.getElementsByClassName("startPoint").item(0);
     let finishPoint = document.getElementsByClassName("endPoint").item(0);
@@ -78,8 +78,7 @@ document.querySelector("#findPathButton").onclick = async function(){
 
         let currMatrixPoint = document.getElementById("cell." + parseInt(bestIndex/size) + "." + (bestIndex%size));
         if (currMatrixPoint === finishPoint){
-            changeAccesebility("enable", "all");
-            changeAccesebility("disable", "some");
+            changeAccesebility("enable");
 
             let matrixPoint = matrix[parseInt(bestIndex/size)][bestIndex%size].parent.getAttribute("square");
             while (matrix[parseInt(matrixPoint/size)][matrixPoint%size].parent !== null){
@@ -91,9 +90,6 @@ document.querySelector("#findPathButton").onclick = async function(){
             return;
         }
 
-        if (currMatrixPoint !== startPoint){
-            currMatrixPoint.className = "currentCell";
-        }
         queue.splice(positionInQueue, 1);
         
         let currNeighbours = findNeighboursOfPoint(currMatrixPoint);
@@ -120,7 +116,6 @@ document.querySelector("#findPathButton").onclick = async function(){
     }
     startPoint.className = "startPoint";
     finishPoint.className = "endPoint";
-    changeAccesebility("enable", "all");
-    changeAccesebility("disable", "some");
+    changeAccesebility("enable");
     alert("Путь отсутствует!");
 }

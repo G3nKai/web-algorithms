@@ -80,7 +80,7 @@ h1 {
 
 /* панель настроек */
 .toolbar {
-    font-size: 16px;
+    font-size: 18px;
     position: absolute;
     width: 350px;
     height: 300px;
@@ -99,6 +99,14 @@ h1 {
 
 .selector-mode {
     margin-top: 10px;
+}
+
+/* клетки */
+div span {
+    width: 25px; 
+    height: 25px; 
+    position: absolute; 
+    border: 2px solid black;
 }
 
 /* кнопки */
@@ -137,24 +145,14 @@ h1 {
 option, select, input {
     height: 25px;
     font-family: Tinkoff-1;
+    font-size: 15px;
     color: black;
     background-color: #ffffff;
     border: 0px;
     border-radius: 5px;
 }
 
-range {
-    color:#fafafa;
-}
-
-/* клетки */
-div span {
-    width: 20px; 
-    height: 20px; 
-    position: absolute; 
-    border: 1px solid black;
-}
-
+/* цвета клеток */
 .blankCell {
     background-color: #f0eeee;
 }

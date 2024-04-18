@@ -19,8 +19,8 @@ function createLabyrinth() {
             let cage = document.createElement('span');
             cage.id = "cell." + i + "." + j;
 
-            cage.style.top = 200 + 20 * (i + 1) + 'px';
-            cage.style.left = beginningLabyrinth + 20 * (j + 1) + 'px';
+            cage.style.top = 200 + 25 * (i + 1) + 'px';
+            cage.style.left = beginningLabyrinth + 25 * (j + 1) + 'px';
 
             cage.className = "blankCell";
             cage.setAttribute("square", i * size + j); // позиция ячейки в одномерном представлении
@@ -33,7 +33,7 @@ function createLabyrinth() {
     document.getElementById("cell." + (size - 1) + "." + (size - 1)).className = "endPoint";
     document.getElementById("cell.0.0").className = "startPoint";
 
-    changeAccesebility("enable", "some");
+    changeAccesebility("enable");
 }
 
 document.querySelector("#gridSizeSlider").addEventListener("input", (event) => {
