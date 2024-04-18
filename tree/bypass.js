@@ -13,6 +13,7 @@ async function makeDecision() {
             currentNode.visited = true;
             await gradient('rgb(97, 240, 105)', currentNode);
             await sleep(100);
+
             if (currentNode.finalA !== undefined) {
 				await gradientForFinal('rgb(97, 240, 105)', currentNode.finalA);
 				await sleep(100);
@@ -38,6 +39,7 @@ async function makeDecision() {
         }
 
         counter--;
+
         if (counter < 0) {
             alert("Введите корректно обход")
             break;
