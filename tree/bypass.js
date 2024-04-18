@@ -1,5 +1,3 @@
-start_button.addEventListener('click', start);
-
 function start() {
     if (flag) makeDecision();
 }
