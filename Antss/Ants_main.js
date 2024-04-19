@@ -1,5 +1,5 @@
-
-function slider(upt, set_upt,key) {
+//метод для упрощенной роботы с слайдерами
+function Slider(upt, set_upt,key) {
     upt.addEventListener('input', function() {
         if(key>=1){
             set_upt.innerHTML = upt.value;
@@ -9,28 +9,29 @@ function slider(upt, set_upt,key) {
     });
 }
 
-slider(update, set_update,1);
+
 //вес расстояний
 let Beta = document.getElementById('beta');
 let set_Beta = document.getElementById('set_beta');
-slider(Beta,set_Beta,1); 
+Slider(Beta,set_Beta,1); 
 //скорость испарения ферамонов
 let speed = document.getElementById('speed');
 let set_speed = document.getElementById('set_speed');
-slider(speed,set_speed,0.1);
+Slider(speed,set_speed,0.1);
 //количество прохождений
 let Count = document.getElementById('count');
 let set_count = document.getElementById('set_count');
-slider(Count,set_count,1);
+Slider(Count,set_count,1);
 
-
+//события мыши
 function mouseMove(event) {
     let rect = block.getBoundingClientRect();
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
     arr.push([x, y]);
-    generate_circle(x, y);
+    GenerateCircle(x, y);
 }
+
 
 block.addEventListener('click', function(event) {
     if (event.target === block) {
@@ -42,20 +43,15 @@ document.querySelector('#getInfoAlgo').onclick = function() {
     alert("Муравьиный алгоритм — один из эффективных алгоритмов для нахождения приближённых решений задачи коммивояжёра, а также решения аналогичных задач поиска маршрутов на графах. Суть подхода заключается в анализе и использовании модели поведения муравьёв, ищущих пути от колонии к источнику питания, и представляет собой метаэвристическую оптимизацию.");
 }
 
-document.querySelector('#clearCanv').onclick = function() {
-    bestPath = [];
-    arr = [];
-    bestDistance =[];
-    clearCanvas();
-}
-
 function changeAccessibility(action) {
     if (action === "enable") {
         document.getElementById("submt").hidden = "";
+        document.getElementById("withOutAnim").hidden = "";
     }
     
     else if (action === "disable") {
         document.getElementById("submt").hidden = "hidden";
+        document.getElementById("withOutAnim").hidden = "hidden";
     }
 
     var sliders = document.getElementsByClassName("sliders")[0].querySelectorAll("input[type=range]");
@@ -69,12 +65,24 @@ function changeAccessibility(action) {
 }
 
 submit.addEventListener('click',function(event){
-    changeAccessibility("disable");
-    run_ants_algor(arr);
+    changeAccessibility("disable",submit);
+    runAntsAlgor(arr);
 });
 
-function run_ants_algor(arr){
-    let distances = find_dist(arr);
+anim.addEventListener('click',function(event){
+    flag = false;
+    changeAccessibility("disable");
+    runAntsAlgor(arr);
+    
+});
+updatePage.addEventListener('click',function(){
+    location.reload();
+})
+
+
+
+function runAntsAlgor(arr){
+    let distances = FindDist(arr);
     let numCities = distances.length; // Количество городов
     let alpha = 1.0;
     let beta = parseInt(Beta.value); // Вес расстояния
@@ -82,10 +90,11 @@ function run_ants_algor(arr){
     let Q = parseInt(update.value); // Параметр Q для обновления феромонов
     let antsCount = numCities; // Количество муравьев
     let count = parseInt(Count.value);
-    let antColony = new AntColony(numCities, distances, alpha, beta, evaporation, Q, antsCount);
+    let antColony = new AntColony(numCities, distances, alpha, beta, evaporation, Q, antsCount,flag);
 
     
-    antColony.run(count);
+    antColony.Run(count);
     // Получение лучшего найденного пути и его длины
-    bestDistance = antColony.get_best_distance();
+    bestDistance = antColony.GetBestDistance();
 }
+
