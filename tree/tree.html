@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <head>
     <title>Дерево решений</title>
-    
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Дерево решений</h1>
-    <div class="Treefamily" id="wrapper">
-        <div class="buttons">
-            <div class="build-tree">
-                <div><b>Построение дерева:</b></div>
-                <button onclick="createTree()">Построить дерево</button>
-            </div>
-            
-            <div>
-                <div><b>Работа с деревом:</b></div>
-                <button onclick="makeDecision()">▶️ Запустить обход</button>
-                <button onclick="removeTree()">❌ Очистить все</button>
-                <input id="file_input" type="file">
-                
-            </div>
-
-            <div class="textbox">
-                <div class="button-section"><b>Ваш запрос:</b></div>
-                <textarea id="input_data" name="input_data" cols="40" rows="5"></textarea></p>
-            </div>
+    <div class="mainbody">
+        <h1>Дерево решений</h1>
+        <div class="back">
+            <p></p>
+            <a class="back-link" href="#" target="_self"><b>← На главную</b></a>
+            <p></p>
         </div>
-            <div class="tree" id="tree">
-                <ul id="root">
+        <div class="Treefamily" id="wrapper">
+            <div class="buttons">
+                <div class="build-tree">
+                    <div><b>Построение дерева:</b></div>
+                    <button onclick="createTree()">Построить дерево</button>
+                </div>
+                
+                <div>
+                    <div><b>Работа с деревом:</b></div>
+                    <button onclick="makeDecision()">▶️ Запустить обход</button>
+                    <button onclick="removeTree()">❌ Очистить все</button>
+                    <input id="file_input" type="file">
                     
-                </ul>
+                </div>
+    
+                <div class="textbox">
+                    <div class="button-section"><b>Ваш запрос:</b></div>
+                    <textarea id="input_data" name="input_data" cols="40" rows="5"></textarea></p>
+                </div>
             </div>
+                <div class="tree" id="tree">
+                    <ul id="root">
+                        
+                    </ul>
+                </div>
+        </div>
     </div>
 
     <script src="tree.js"></script>
