@@ -13,12 +13,12 @@ function GenerateCircle(x, y) {
     ctx.fill();
 }
 
-function GenerateLine(x,y,x1,y1){
+function GenerateLine(x,y,x1,y1,r,g,b){
     ctx.lineWidth = 5;
     ctx.beginPath(); // Начинаем новый путь
     ctx.moveTo(x, y);
     ctx.lineTo(x1, y1);
-    ctx.strokeStyle = 'rgb('+130+','+70+','+110+')'; // Задаем цвет линии
+    ctx.strokeStyle = 'rgb('+r+','+g+','+b+')'; // Задаем цвет линии
     ctx.stroke(); // Рисуем линию
 }
 
@@ -37,7 +37,7 @@ function clearCanvas() {
     ctx.clearRect(0, 0, block.width, block.height);
 }
 
-function ConnectGens(){
+function ConnectGens(r,g,b){
 
     clearCanvas();
 
@@ -46,13 +46,13 @@ function ConnectGens(){
         let y = arr[bestPath[i]][1];
         let x1 = arr[bestPath[i+1]][0]; // Corrected from [1] to [0]
         let y1 = arr[bestPath[i+1]][1]; // Corrected from [0] to [1]
-        GenerateLine(x, y, x1, y1);
+        GenerateLine(x, y, x1, y1,r,g,b);
     }
     x = arr[bestPath[0]][0];
     y = arr[bestPath[0]][1];
     x1 = arr[bestPath[bestPath.length-1]][0];
     y1 = arr[bestPath[bestPath.length-1]][1];
-    GenerateLine(x, y, x1, y1);
+    GenerateLine(x, y, x1, y1,r,g,b);
 
     UpdateCircles();
 }
@@ -84,6 +84,11 @@ class AntColony {
         this.best_distance = inf;
         this.flag = flag;
     }
+    
+    randNum(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
     FindBestPath(ant_distances,ant_paths){
         for(let ant = 0; ant < this.ants_count; ++ant){
             if(ant_distances[ant] < this.best_distance){
@@ -144,10 +149,15 @@ class AntColony {
             let key = this.FindBestPath(ant_distances,ant_paths);
             if(this.flag && key){
                 await sleep(700);
-                ConnectGens();
+                let r = this.randNum(0,255);
+                let g = this.randNum(0,255);
+                let b = this.randNum(0,255);
+                ConnectGens(r,g,b);
             }
             console.log(iter);
         }
+
+
         changeAccessibility("enable");
         ConnectGens();
         await sleep(100);
