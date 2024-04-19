@@ -82,7 +82,7 @@ anim.addEventListener('click',function(event){
     
 });
 function runAntsAlgor(arr){
-    let distances = find_dist(arr);
+    let distances = FindDist(arr);
     let numCities = distances.length; // Количество городов
     let alpha = 1.0;
     let beta = parseInt(Beta.value); // Вес расстояния
