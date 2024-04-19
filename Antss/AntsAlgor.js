@@ -2,7 +2,7 @@ let inf = 1e9;
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-function generate_circle(x, y) {
+function GenerateCircle(x, y) {
     ctx.beginPath();
     ctx.arc(x,y,10,0,2*Math.PI);
     ctx.fillStyle = "rgb(204, 204, 172)";
@@ -13,7 +13,7 @@ function generate_circle(x, y) {
     ctx.fill();
 }
 
-function generate_line(x,y,x1,y1,r,g,b){
+function GenerateLine(x,y,x1,y1,r,g,b){
     ctx.lineWidth = 5;
     ctx.beginPath(); // Начинаем новый путь
     ctx.moveTo(x, y);
@@ -22,23 +22,22 @@ function generate_line(x,y,x1,y1,r,g,b){
     ctx.stroke(); // Рисуем линию
 }
 
-function update_circles(){
+function UpdateCircles(){
     for(let i = 0; i < bestPath.length-1; ++i){
         let x = arr[bestPath[i]][0];
         let y = arr[bestPath[i]][1];
         let x1 = arr[bestPath[i+1]][0];
         let y1 = arr[bestPath[i+1]][1];
-        generate_circle(x, y); // Рисуем круги сначала
-        generate_circle(x1, y1);
+        GenerateCircle(x, y); // Рисуем круги сначала
+        GenerateCircle(x1, y1);
     }
 }
 
 function clearCanvas() {
     ctx.clearRect(0, 0, block.width, block.height);
-    console.log('worked');
 }
 
-function connect_gens(r,g,b){
+function ConnectGens(r,g,b){
 
     clearCanvas();
 
@@ -47,19 +46,18 @@ function connect_gens(r,g,b){
         let y = arr[bestPath[i]][1];
         let x1 = arr[bestPath[i+1]][0]; // Corrected from [1] to [0]
         let y1 = arr[bestPath[i+1]][1]; // Corrected from [0] to [1]
-        generate_line(x, y, x1, y1,r,g,b);
+        GenerateLine(x, y, x1, y1,r,g,b);
     }
     x = arr[bestPath[0]][0];
     y = arr[bestPath[0]][1];
     x1 = arr[bestPath[bestPath.length-1]][0];
     y1 = arr[bestPath[bestPath.length-1]][1];
-    generate_line(x, y, x1, y1,r,g,b);
+    GenerateLine(x, y, x1, y1,r,g,b);
 
-    update_circles();
-    console.log('worked');
+    UpdateCircles();
 }
 
-function find_dist(cities){
+function FindDist(cities){
     let length = cities.length;
     let dist = new Array(length).fill().map(() => new Array(length).fill(0));
 
@@ -74,7 +72,7 @@ function find_dist(cities){
 
 
 class AntColony {
-    constructor(num_cities, dist_matrix, alpha, beta, evaporation, q, ant_count) {
+    constructor(num_cities, dist_matrix, alpha, beta, evaporation, q, ant_count,flag) {
         this.n = num_cities; // количество городов
         this.distances = dist_matrix;
         this.pheromone = new Array(num_cities).fill().map(() => new Array(num_cities).fill(1.0));
@@ -84,22 +82,24 @@ class AntColony {
         this.Q = q; // параметр Q для обновления феромонов
         this.ants_count = ant_count;
         this.best_distance = inf;
+        this.flag = flag;
     }
-
-    rand_num(min, max) {
+    
+    randNum(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    async find_best_path(ant_distances,ant_paths){
+    FindBestPath(ant_distances,ant_paths){
         for(let ant = 0; ant < this.ants_count; ++ant){
             if(ant_distances[ant] < this.best_distance){
                 this.best_distance = ant_distances[ant];
                 bestPath = ant_paths[ant];
-                console.log(bestPath);
+                return true;
             }
         }
+        return false;
     }
-    async run(num_iteration) {
+    async Run(num_iteration) {
         for(let iter = 0; iter < num_iteration; ++iter){
             let ant_paths = new Array(this.ants_count).fill().map(() => new Array(this.n).fill());
             let ant_distances = new Array(this.ants_count).fill(0.0);
@@ -114,7 +114,7 @@ class AntColony {
                 for(let i = 1; i < this.n; ++i){
 
                     let current_city = ant_paths[ant][i-1];
-                    let next_city = this.choose_next_city(current_city,visited);
+                    let next_city = this.ChooseNextCity(current_city,visited);
                     ant_paths[ant][i] = next_city;
                     visited[next_city] = 1;
                     ant_distances[ant] += this.distances[current_city][next_city];
@@ -146,20 +146,25 @@ class AntColony {
                 } 
             }
 
-            this.find_best_path(ant_distances,ant_paths);
-            
-            let r = this.rand_num(0,255);
-            let g = this.rand_num(0,255);
-            let b = this.rand_num(0,255);
-
-            await sleep(1);
-            connect_gens(r,g,b);
+            let key = this.FindBestPath(ant_distances,ant_paths);
+            if(this.flag && key){
+                await sleep(700);
+                let r = this.randNum(0,255);
+                let g = this.randNum(0,255);
+                let b = this.randNum(0,255);
+                ConnectGens(r,g,b);
+            }
+            console.log(iter);
         }
-        alert("готово");
+
+
         changeAccessibility("enable");
+        ConnectGens();
+        await sleep(100);
+        alert("Алгоритм завершил работу!");
     }
     
-    choose_next_city(current_city,visited){
+    ChooseNextCity(current_city,visited){
         let probabilities = new Array(this.n).fill(0.0);
         let total_prob = 0.0;
 
@@ -191,7 +196,7 @@ class AntColony {
         }
     }
 
-    get_best_distance(){
+    GetBestDistance(){
         return this.best_distance;
     }
 }
