@@ -97,3 +97,4 @@ function runAntsAlgor(arr){
     // Получение лучшего найденного пути и его длины
     bestDistance = antColony.GetBestDistance();
 }
+

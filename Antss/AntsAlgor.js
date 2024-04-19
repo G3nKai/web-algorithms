@@ -147,10 +147,11 @@ class AntColony {
                 ConnectGens();
             }
 
-            console.log(iter);
         }
         changeAccessibility("enable");
-        alert('готово');
+        ConnectGens();
+        await sleep(100);
+        alert("Алгоритм завершил работу!");
     }
     
     ChooseNextCity(current_city,visited){
