@@ -9,19 +9,19 @@ function slider(upt, set_upt,key) {
     });
 }
 
-slider(update, set_update,1);
+Slider(update, set_update,1);
 //вес расстояний
 let Beta = document.getElementById('beta');
 let set_Beta = document.getElementById('set_beta');
-slider(Beta,set_Beta,1); 
+Slider(Beta,set_Beta,1); 
 //скорость испарения ферамонов
 let speed = document.getElementById('speed');
 let set_speed = document.getElementById('set_speed');
-slider(speed,set_speed,0.1);
+Slider(speed,set_speed,0.1);
 //количество прохождений
 let Count = document.getElementById('count');
 let set_count = document.getElementById('set_count');
-slider(Count,set_count,1);
+Slider(Count,set_count,1);
 
 
 function mouseMove(event) {
@@ -52,10 +52,12 @@ document.querySelector('#clearCanv').onclick = function() {
 function changeAccessibility(action) {
     if (action === "enable") {
         document.getElementById("submt").hidden = "";
+        document.getElementById("withOutAnim").hidden = "";
     }
     
     else if (action === "disable") {
         document.getElementById("submt").hidden = "hidden";
+        document.getElementById("withOutAnim").hidden = "hidden";
     }
 
     var sliders = document.getElementsByClassName("sliders")[0].querySelectorAll("input[type=range]");
@@ -69,11 +71,17 @@ function changeAccessibility(action) {
 }
 
 submit.addEventListener('click',function(event){
-    changeAccessibility("disable");
-    run_ants_algor(arr);
+    changeAccessibility("disable",submit);
+    runAntsAlgor(arr);
 });
 
-function run_ants_algor(arr){
+anim.addEventListener('click',function(event){
+    flag = false;
+    changeAccessibility("disable");
+    runAntsAlgor(arr);
+    
+});
+function runAntsAlgor(arr){
     let distances = find_dist(arr);
     let numCities = distances.length; // Количество городов
     let alpha = 1.0;
@@ -82,10 +90,10 @@ function run_ants_algor(arr){
     let Q = parseInt(update.value); // Параметр Q для обновления феромонов
     let antsCount = numCities; // Количество муравьев
     let count = parseInt(Count.value);
-    let antColony = new AntColony(numCities, distances, alpha, beta, evaporation, Q, antsCount);
+    let antColony = new AntColony(numCities, distances, alpha, beta, evaporation, Q, antsCount,flag);
 
     
     antColony.run(count);
     // Получение лучшего найденного пути и его длины
-    bestDistance = antColony.get_best_distance();
+    bestDistance = antColony.GetBestDistance();
 }
