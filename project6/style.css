@@ -91,3 +91,22 @@ body {
     background-color: #ffffff;
     top: 100%;
 }
+
+@media only screen and (max-width: 768px) {
+    .video-bg__content {
+        font-size: 70px;
+    }
+
+    #nav {
+        font-size: 20px;
+    }
+
+    #nav li {
+        display: block;
+        padding: 10px 0;
+    }
+
+    .linkk::after {
+        height: 2px;
+    }
+}
