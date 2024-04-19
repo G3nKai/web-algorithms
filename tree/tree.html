@@ -14,22 +14,19 @@
             <p></p>
         </div>
 
-        <div class="Treefamily" id="wrapper">
+        <div class="Treefamily">
             <div class="buttons">
-                <button onclick="createTree()">🌲 Построить дерево</button>
+                <button onclick="createTree()">Построить дерево</button>
                 &nbsp;&nbsp;&nbsp; 
-                <button onclick="makeDecision()">▶ Запустить обход</button>
+                <button onclick="makeDecision()">Запустить обход</button>
                 &nbsp;&nbsp;&nbsp;
-                <button onclick="removeTree()">⛔ Очистить все</button>
+                <button onclick="removeTree()"> Очистить все</button>
                 &nbsp;&nbsp;&nbsp;
+                <label for="file_input">Выберите файл</label><input id="file_input" type="file" style="display: none;">
             </div><br>
 
-            <div class="chooseFile">
-                <input id="file_input" type="file"><label for="file_input">🗂️Выберите файл...</label>
-            </div>
-
             <div class="textbox">
-                <div class="button-section"><b>Ваш запрос:</b></div>
+                <div class="button-section"><b>Введите параметры обхода:</b></div>
                 <textarea id="input_data" name="input_data" cols="40" rows="5"></textarea></p>
             </div>
 
