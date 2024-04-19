@@ -7,36 +7,38 @@
 <body>
     <div class="mainbody">
         <h1>Дерево решений</h1>
+
         <div class="back">
             <p></p>
             <a class="back-link" href="#" target="_self"><b>← На главную</b></a>
             <p></p>
         </div>
+
         <div class="Treefamily" id="wrapper">
             <div class="buttons">
-                <div class="build-tree">
-                    <div><b>Построение дерева:</b></div>
-                    <button onclick="createTree()">Построить дерево</button>
-                </div>
-                
-                <div>
-                    <div><b>Работа с деревом:</b></div>
-                    <button onclick="makeDecision()">▶️ Запустить обход</button>
-                    <button onclick="removeTree()">❌ Очистить все</button>
-                    <input id="file_input" type="file">
-                    
-                </div>
-    
-                <div class="textbox">
-                    <div class="button-section"><b>Ваш запрос:</b></div>
-                    <textarea id="input_data" name="input_data" cols="40" rows="5"></textarea></p>
-                </div>
+                <button onclick="createTree()">🌲 Построить дерево</button>
+                &nbsp;&nbsp;&nbsp; 
+                <button onclick="makeDecision()">▶ Запустить обход</button>
+                &nbsp;&nbsp;&nbsp;
+                <button onclick="removeTree()">⛔ Очистить все</button>
+                &nbsp;&nbsp;&nbsp;
+            </div><br>
+
+            <div class="chooseFile">
+                <input id="file_input" type="file"><label for="file_input">🗂️Выберите файл...</label>
             </div>
-                <div class="tree" id="tree">
-                    <ul id="root">
-                        
-                    </ul>
-                </div>
+
+            <div class="textbox">
+                <div class="button-section"><b>Ваш запрос:</b></div>
+                <textarea id="input_data" name="input_data" cols="40" rows="5"></textarea></p>
+            </div>
+
+            <div class="tree" id="tree">
+                <ul id="root">
+                    
+                </ul>
+            </div>
+
         </div>
     </div>
 
@@ -46,7 +48,5 @@
     <script src="coloring.js"></script>
     <script src="bypass.js"></script>
     <script src="delete.js"></script>
-
-
 </body>
 </html>
