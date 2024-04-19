@@ -154,7 +154,6 @@ class AntColony {
                 let b = this.randNum(0,255);
                 ConnectGens(r,g,b);
             }
-            console.log(iter);
         }
 
 
