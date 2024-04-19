@@ -29,7 +29,7 @@ function mouseMove(event) {
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
     arr.push([x, y]);
-    generate_circle(x, y);
+    GenerateCircle(x, y);
 }
 
 block.addEventListener('click', function(event) {
