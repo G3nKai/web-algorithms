@@ -1,11 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <title>Дерево решений</title>
     
+</head>
+
+<body>
+    <h1>Дерево решений</h1>
+    <div class="Treefamily" id="wrapper">
+        <div class="buttons">
+            <div class="build-tree">
+                <div><b>Построение дерева:</b></div>
+                <button onclick="createTree()">Построить дерево</button>
+            </div>
+            
+            <div>
+                <div><b>Работа с деревом:</b></div>
+                <button onclick="makeDecision()">▶️ Запустить обход</button>
+                <button onclick="removeTree()">❌ Очистить все</button>
+                <input id="file_input" type="file">
+                
+            </div>
+
+            <div class="textbox">
+                <div class="button-section"><b>Ваш запрос:</b></div>
+                <textarea id="input_data" name="input_data" cols="40" rows="5"></textarea></p>
+            </div>
+        </div>
+            <div class="tree" id="tree">
+                <ul id="root">
+                    
+                </ul>
+            </div>
+    </div>
+
+    <script src="tree.js"></script>
+    <script src="building.js"></script>
+    <script src="datawork.js"></script>
+    <script src="coloring.js"></script>
+    <script src="bypass.js"></script>
+    <script src="delete.js"></script>
+
+
 </body>
 </html>
