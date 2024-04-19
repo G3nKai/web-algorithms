@@ -146,7 +146,7 @@ class AntColony {
                 await sleep(700);
                 ConnectGens();
             }
-
+            console.log(iter);
         }
         changeAccessibility("enable");
         ConnectGens();
