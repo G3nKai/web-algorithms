@@ -1,4 +1,4 @@
-
+//метод для упрощенной роботы с слайдерами
 function Slider(upt, set_upt,key) {
     upt.addEventListener('input', function() {
         if(key>=1){
@@ -9,7 +9,7 @@ function Slider(upt, set_upt,key) {
     });
 }
 
-Slider(update, set_update,1);
+
 //вес расстояний
 let Beta = document.getElementById('beta');
 let set_Beta = document.getElementById('set_beta');
@@ -23,7 +23,7 @@ let Count = document.getElementById('count');
 let set_count = document.getElementById('set_count');
 Slider(Count,set_count,1);
 
-
+//события мыши
 function mouseMove(event) {
     let rect = block.getBoundingClientRect();
     let x = event.clientX - rect.left;
@@ -31,6 +31,7 @@ function mouseMove(event) {
     arr.push([x, y]);
     GenerateCircle(x, y);
 }
+
 
 block.addEventListener('click', function(event) {
     if (event.target === block) {
@@ -42,24 +43,15 @@ document.querySelector('#getInfoAlgo').onclick = function() {
     alert("Муравьиный алгоритм — один из эффективных алгоритмов для нахождения приближённых решений задачи коммивояжёра, а также решения аналогичных задач поиска маршрутов на графах. Суть подхода заключается в анализе и использовании модели поведения муравьёв, ищущих пути от колонии к источнику питания, и представляет собой метаэвристическую оптимизацию.");
 }
 
-document.querySelector('#clearCanv').onclick = function() {
-    bestPath = [];
-    arr = [];
-    bestDistance =[];
-    clearCanvas();
-}
-
 function changeAccessibility(action) {
     if (action === "enable") {
         document.getElementById("submt").hidden = "";
         document.getElementById("withOutAnim").hidden = "";
-        document.getElementById("clearCanv").hidden = "";
     }
     
     else if (action === "disable") {
         document.getElementById("submt").hidden = "hidden";
         document.getElementById("withOutAnim").hidden = "hidden";
-        document.getElementById("clearCanv").hidden = "hidden";
     }
 
     var sliders = document.getElementsByClassName("sliders")[0].querySelectorAll("input[type=range]");
@@ -83,6 +75,12 @@ anim.addEventListener('click',function(event){
     runAntsAlgor(arr);
     
 });
+updatePage.addEventListener('click',function(){
+    location.reload();
+})
+
+
+
 function runAntsAlgor(arr){
     let distances = FindDist(arr);
     let numCities = distances.length; // Количество городов

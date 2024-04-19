@@ -1,6 +1,7 @@
 let block = document.getElementById('plank');
 let submit = document.getElementById('submt');
 let anim = document.getElementById('withOutAnim');
+let updatePage = document.getElementById('updatePage');
 let flag = true;
 let ctx = block.getContext('2d');
 let arr = [];

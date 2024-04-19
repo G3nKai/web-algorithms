@@ -84,13 +84,15 @@ class AntColony {
         this.best_distance = inf;
         this.flag = flag;
     }
-    async FindBestPath(ant_distances,ant_paths){
+    FindBestPath(ant_distances,ant_paths){
         for(let ant = 0; ant < this.ants_count; ++ant){
             if(ant_distances[ant] < this.best_distance){
                 this.best_distance = ant_distances[ant];
                 bestPath = ant_paths[ant];
+                return true;
             }
         }
+        return false;
     }
     async Run(num_iteration) {
         for(let iter = 0; iter < num_iteration; ++iter){
@@ -139,12 +141,13 @@ class AntColony {
                 } 
             }
 
-            this.FindBestPath(ant_distances,ant_paths);
-            
-            if(flag){
-                await sleep(100);
+            let key = this.FindBestPath(ant_distances,ant_paths);
+            if(this.flag && key){
+                await sleep(700);
+                ConnectGens();
             }
-            ConnectGens();
+
+            console.log(iter);
         }
         changeAccessibility("enable");
         alert('готово');
