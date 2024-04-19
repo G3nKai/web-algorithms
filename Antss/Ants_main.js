@@ -1,5 +1,5 @@
 
-function slider(upt, set_upt,key) {
+function Slider(upt, set_upt,key) {
     upt.addEventListener('input', function() {
         if(key>=1){
             set_upt.innerHTML = upt.value;
