@@ -53,11 +53,13 @@ function changeAccessibility(action) {
     if (action === "enable") {
         document.getElementById("submt").hidden = "";
         document.getElementById("withOutAnim").hidden = "";
+        document.getElementById("clearCanv").hidden = "";
     }
     
     else if (action === "disable") {
         document.getElementById("submt").hidden = "hidden";
         document.getElementById("withOutAnim").hidden = "hidden";
+        document.getElementById("clearCanv").hidden = "hidden";
     }
 
     var sliders = document.getElementsByClassName("sliders")[0].querySelectorAll("input[type=range]");
