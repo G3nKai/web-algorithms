@@ -93,7 +93,7 @@ function runAntsAlgor(arr){
     let antColony = new AntColony(numCities, distances, alpha, beta, evaporation, Q, antsCount,flag);
 
     
-    antColony.run(count);
+    antColony.Run(count);
     // Получение лучшего найденного пути и его длины
     bestDistance = antColony.GetBestDistance();
 }
