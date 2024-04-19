@@ -43,8 +43,8 @@ kk.addEventListener("input", function() {
 
 
 const selector = document.getElementById('start');
-const kmeansDiv = document.getElementById('jerach and kmeans');
-const jerarchDiv = document.getElementById('jerach and kmeans');
+const kmeansDiv = document.getElementById('jerachAndkmeans');
+const jerarchDiv = document.getElementById('jerachAndkmeans');
 const dbscanDiv = document.getElementById('dbscam');
 
 selector.addEventListener('change', function() {
