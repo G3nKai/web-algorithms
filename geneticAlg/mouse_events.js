@@ -1,26 +1,26 @@
 //population slider
-let set_population = document.getElementById('set_population');
+let setPopulation = document.getElementById('setPopulation');
 let population = document.getElementById('population');
-set_population.innerHTML = population.value;
+setPopulation.innerHTML = population.value;
 population.addEventListener('input', function() {
-    set_population.innerHTML = population.value;
+    setPopulation.innerHTML = population.value;
 });
 
 //gens
-let gen_count = document.getElementById('gen');
-let set_gen = document.getElementById('set_gen');
-set_gen.innerHTML = gen_count.value;
+let genCount = document.getElementById('gen');
+let setGen = document.getElementById('setGen');
+setGen.innerHTML = genCount.value;
 gen.addEventListener('input', function() {
-    set_gen.innerHTML = gen_count.value;
+    setGen.innerHTML = genCount.value;
 });
 
 
 //mutation procent
 let procent = document.getElementById('mutation');
-let set_procent = document.getElementById('set_mutation');
-set_procent.innerHTML = procent.value;
+let setProcent = document.getElementById('setMutation');
+setProcent.innerHTML = procent.value;
 procent.addEventListener('input', function() {
-    set_procent.innerHTML = procent.value;
+    setProcent.innerHTML = procent.value;
 });
 
 
@@ -31,7 +31,7 @@ submit.addEventListener('click',function(event){
         alert("Введите больше двух точек");
     }
     else{
-        run_generic_algor(size_of_population, quantity_of_gen, mutation_procent, arr);
+        runGenericAlgor(sizeOfPopulation, quantityOfGen, mutationProcent, arr);
     }
 });
 
@@ -51,7 +51,7 @@ function mouseMove(event) {
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
     arr.push([x, y]);
-    generate_circle(x, y);
+    generateCircle(x, y);
 }
 
 block.addEventListener('click', function(event) {

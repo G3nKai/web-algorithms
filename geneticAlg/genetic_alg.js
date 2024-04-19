@@ -1,5 +1,5 @@
 
-function generate_circle(x, y) {
+function generateCircle(x, y) {
     ctx.beginPath();
     ctx.arc(x,y,10,0,2*Math.PI);
     ctx.fillStyle = "rgb(204, 204, 172)";
@@ -10,7 +10,7 @@ function generate_circle(x, y) {
     ctx.fill();
 }
 
-function generate_line(x,y,x1,y1,r,g,b){
+function generateLine(x,y,x1,y1,r,g,b){
     ctx.lineWidth = 5;
     ctx.beginPath(); // Начинаем новый путь
     ctx.moveTo(x, y);
@@ -19,14 +19,14 @@ function generate_line(x,y,x1,y1,r,g,b){
     ctx.stroke(); // Рисуем линию
 }
 
-function update_circles(){
+function updateCircles(){
     for(let i = 0; i < bestPath.length-1; ++i){
         let x = arr[bestPath[i]][0];
         let y = arr[bestPath[i]][1];
         let x1 = arr[bestPath[i+1]][0];
         let y1 = arr[bestPath[i+1]][1];
-        generate_circle(x, y); // Рисуем круги сначала
-        generate_circle(x1, y1);
+        generateCircle(x, y); // Рисуем круги сначала
+        generateCircle(x1, y1);
     }
 }
 
@@ -34,7 +34,7 @@ function clearCanvas() {
     ctx.clearRect(0, 0, block.width, block.height);
 }
 
-function connect_gens(r,g,b){
+function connectGens(r,g,b){
 
     clearCanvas();
 
@@ -43,44 +43,44 @@ function connect_gens(r,g,b){
         let y = arr[bestPath[i]][1];
         let x1 = arr[bestPath[i+1]][0]; // Corrected from [1] to [0]
         let y1 = arr[bestPath[i+1]][1]; // Corrected from [0] to [1]
-        generate_line(x, y, x1, y1,r,g,b);
+        generateLine(x, y, x1, y1,r,g,b);
     }
     x = arr[bestPath[0]][0];
     y = arr[bestPath[0]][1];
     x1 = arr[bestPath[bestPath.length-1]][0];
     y1 = arr[bestPath[bestPath.length-1]][1];
-    generate_line(x, y, x1, y1,r,g,b);
+    generateLine(x, y, x1, y1,r,g,b);
 
-    update_circles();
+    updateCircles();
 
 }
-class Genetic_Algor {
-    constructor(size_of_population, quantity_of_gen, mutation_procent, arr_of_points) {
-        this.size_of_population = size_of_population; //кол-во строк при генерации популяции
-        this.quantity_of_gen = quantity_of_gen; //поколения
-        this.mutation_procent = mutation_procent; //процент мутации
-        this.arr_of_points = arr_of_points; //координаты точек
-        this.path = new Array(size_of_population).fill().map(() => new Array(arr_of_points.length).fill(0));
-        this.distances = new Array(size_of_population);
-        this.rand_arr1 = [];//выбор  радомной строки из матрицы
-        this.rand_arr2 = [];//выбор  радомной строки из матрицы
-        this.crossed_arr1;//1 скрещенный массив
-        this.crossed_arr2;//2 скрещенный массив
-        this.distances_for_crossed =[2];
+class GeneticAlgor {
+    constructor(sizeOfPopulation, quantityOfGen, mutationProcent, arrOfPoints) {
+        this.sizeOfPopulation = sizeOfPopulation; //кол-во строк при генерации популяции
+        this.quantityOfGen = quantityOfGen; //поколения
+        this.mutationProcent = mutationProcent; //процент мутации
+        this.arrOfPoints = arrOfPoints; //координаты точек
+        this.path = new Array(sizeOfPopulation).fill().map(() => new Array(arrOfPoints.length).fill(0));
+        this.distances = new Array(sizeOfPopulation);
+        this.randArr1 = [];//выбор  радомной строки из матрицы
+        this.randArr2 = [];//выбор  радомной строки из матрицы
+        this.crossedArr1;//1 скрещенный массив
+        this.crossedArr2;//2 скрещенный массив
+        this.distancesForCrossed =[2];
     }
 
     //рандомное число в заданом диапaзоне
-    rand_num(min, max) {
+    randNum(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     //расстояние между двумя точками
-    find_coord(x,y,x1,y1){
+    findCoord(x,y,x1,y1){
         return Math.sqrt(Math.pow(x-x1,2) + Math.pow(y-y1,2));   
     }
    
     //расстония между всеми точками
-    find_dist(path,city,arr_of_points){
+    findDist(path,city,arrOfPoints){
    
         let sum = 0;
         let x,y,x1,y1;
@@ -88,38 +88,38 @@ class Genetic_Algor {
         for(let i = 0; i < path[city].length - 1; ++i){
         
            let j = i+1;
-           x = arr_of_points[path[city][i]][0];
-           y = arr_of_points[path[city][i]][1];
-           x1 = arr_of_points[path[city][j]][0];
-           y1 = arr_of_points[path[city][j]][1];
+           x = arrOfPoints[path[city][i]][0];
+           y = arrOfPoints[path[city][i]][1];
+           x1 = arrOfPoints[path[city][j]][0];
+           y1 = arrOfPoints[path[city][j]][1];
 
-           sum += this.find_coord(x,y,x1,y1);
+           sum += this.findCoord(x,y,x1,y1);
         }
 
-        x = arr_of_points[path[city][0]][0];
-        y = arr_of_points[path[city][0]][1];
-        x1 = arr_of_points[path[city][path[city].length - 1]][0];
-        y1 = arr_of_points[path[city][path[city].length - 1]][1];
+        x = arrOfPoints[path[city][0]][0];
+        y = arrOfPoints[path[city][0]][1];
+        x1 = arrOfPoints[path[city][path[city].length - 1]][0];
+        y1 = arrOfPoints[path[city][path[city].length - 1]][1];
 
-        sum += this.find_coord(x,y,x1,y1);
+        sum += this.findCoord(x,y,x1,y1);
 
         return sum;
     }
 
      //cкрещивание
-    find_crossing(arr){
+    findCrossing(arr){
 
         let sum = 0;
         let x,y,x1,y1;
         
         for(let i = 0; i < arr.length-1; ++i){
 
-            x = this.arr_of_points[arr[i]][0];
-            y = this.arr_of_points[arr[i]][1];
-            x1 = this.arr_of_points[arr[i+1]][0];
-            y1 = this.arr_of_points[arr[i+1]][1];
+            x = this.arrOfPoints[arr[i]][0];
+            y = this.arrOfPoints[arr[i]][1];
+            x1 = this.arrOfPoints[arr[i+1]][0];
+            y1 = this.arrOfPoints[arr[i+1]][1];
 
-            sum += this.find_coord(x,y,x1,y1);
+            sum += this.findCoord(x,y,x1,y1);
         }
         return sum;
     }
@@ -129,8 +129,8 @@ class Genetic_Algor {
         let length = arr1.length;
         let result = new Array(length).fill(0);
         let result2 = new Array(length);
-        let visited = new Array(this.arr_of_points.length).fill(false);
-        let visited2 = new Array(this.arr_of_points.length).fill(false);
+        let visited = new Array(this.arrOfPoints.length).fill(false);
+        let visited2 = new Array(this.arrOfPoints.length).fill(false);
         
         for(let i = 0; i < Math.floor(length/2); ++i){
 
@@ -183,13 +183,13 @@ class Genetic_Algor {
     mutation(arr1){
         let mutated = arr1;
 
-        let mutation_rand = this.rand_num(0,100);
+        let mutationRand = this.randNum(0,100);
 
-        if(mutation_rand > mutation_procent){
+        if(mutationRand > mutationProcent){
             let gen1, gen2;
             do {
-                gen1 = this.rand_num(1, arr1.length - 1); // Исправлено
-                gen2 = this.rand_num(1, arr1.length - 1); // Исправлено
+                gen1 = this.randNum(1, arr1.length - 1); // Исправлено
+                gen2 = this.randNum(1, arr1.length - 1); // Исправлено
             } while (gen1 == gen2);
 
             let gen3 = mutated[gen1];
@@ -200,15 +200,15 @@ class Genetic_Algor {
         return mutated;
     }
 
-    add_new_kids(){
+    addNewKids(){
 
-        this.path.push(this.crossed_arr1);
-        this.path.push(this.crossed_arr2);
-        this.distances.push(this.distances_for_crossed[0]);
-        this.distances.push(this.distances_for_crossed[1]);
+        this.path.push(this.crossedArr1);
+        this.path.push(this.crossedArr2);
+        this.distances.push(this.distancesForCrossed[0]);
+        this.distances.push(this.distancesForCrossed[1]);
 
     }
-    sort_kids() {
+    sortKids() {
         for (let i = 0; i < this.distances.length; ++i) {
             for (let j = 0; j < this.distances.length - 1; ++j) {
                 if (this.distances[j] > this.distances[j + 1]) {
@@ -225,7 +225,7 @@ class Genetic_Algor {
         }
     }
     
-    delete_worst_individ() {
+    deleteWorstIndivid() {
         // Проверка наличия элементов перед удалением
         if (this.distances.length >= 2 && this.path.length >= 2) {
             this.distances.splice(-2);
@@ -233,68 +233,68 @@ class Genetic_Algor {
         }
     }
 
-    generate_chromo(){
-        for (let i = 0; i < this.size_of_population; ++i) {
+    generateChromo(){
+        for (let i = 0; i < this.sizeOfPopulation; ++i) {
             this.path[i][0] = 0;
-            let visited = new Array(this.arr_of_points.length).fill(false);
+            let visited = new Array(this.arrOfPoints.length).fill(false);
             visited[0] = true; // Первая вершина всегда 0
 
-            for (let j = 1; j < this.arr_of_points.length; ++j) {
+            for (let j = 1; j < this.arrOfPoints.length; ++j) {
                 let rnd;
                 do {
-                    rnd = this.rand_num(0, this.arr_of_points.length - 1);
+                    rnd = this.randNum(0, this.arrOfPoints.length - 1);
                 } while (visited[rnd]); // проверка на длину массива
                 this.path[i][j] = rnd;
                 visited[rnd] = true;
             }
-            this.distances[i] = this.find_dist(this.path, i, this.arr_of_points);
+            this.distances[i] = this.findDist(this.path, i, this.arrOfPoints);
         }
 
     }
     run() {
         // берем 2 рандомные массивы 
         let rnd, rnd2;
-        rnd = this.rand_num(0, this.size_of_population - 1);
-        rnd2 = this.rand_num(0, this.size_of_population - 1);
-        this.rand_arr1 = this.path[rnd].slice();
-        this.rand_arr2 = this.path[rnd2].slice();
+        rnd = this.randNum(0, this.sizeOfPopulation - 1);
+        rnd2 = this.randNum(0, this.sizeOfPopulation - 1);
+        this.randArr1 = this.path[rnd].slice();
+        this.randArr2 = this.path[rnd2].slice();
 
-        let result = this.crossing(this.rand_arr1, this.rand_arr2);
+        let result = this.crossing(this.randArr1, this.randArr2);
 
-        this.crossed_arr1 = result[0];
-        this.crossed_arr2 = result[1];
-        this.distances_for_crossed[0] = this.find_crossing(this.crossed_arr1);
-        this.distances_for_crossed[1] = this.find_crossing(this.crossed_arr2);
+        this.crossedArr1 = result[0];
+        this.crossedArr2 = result[1];
+        this.distancesForCrossed[0] = this.findCrossing(this.crossedArr1);
+        this.distancesForCrossed[1] = this.findCrossing(this.crossedArr2);
 
         if (this.path[0].length >= 2) {
 
-            if (this.distances_for_crossed[0] > this.distances_for_crossed[1]) {
-                this.crossed_arr1 = this.mutation(this.crossed_arr1);
-                this.distances_for_crossed[0] = this.find_crossing(this.crossed_arr1);
+            if (this.distancesForCrossed[0] > this.distancesForCrossed[1]) {
+                this.crossedArr1 = this.mutation(this.crossedArr1);
+                this.distancesForCrossed[0] = this.findCrossing(this.crossedArr1);
             } else {
-                this.crossed_arr2 = this.mutation(this.crossed_arr2);
-                this.distances_for_crossed[1] = this.find_crossing(this.crossed_arr2);
+                this.crossedArr2 = this.mutation(this.crossedArr2);
+                this.distancesForCrossed[1] = this.findCrossing(this.crossedArr2);
             }
 
         }
 
-        this.add_new_kids();
-        this.sort_kids();
-        this.delete_worst_individ();
+        this.addNewKids();
+        this.sortKids();
+        this.deleteWorstIndivid();
     }
     
-    async mutation_counter(){
+    async mutationCounter(){
         let key = 0;
-        while(key < this.quantity_of_gen){
+        while(key < this.quantityOfGen){
             this.run();
             bestPath = this.path[0];
 
-            let r = this.rand_num(0,255);
-            let g = this.rand_num(0,255);
-            let b = this.rand_num(0,255);
+            let r = this.randNum(0,255);
+            let g = this.randNum(0,255);
+            let b = this.randNum(0,255);
 
             await sleep(200);
-            connect_gens(r,g,b);
+            connectGens(r,g,b);
             key++;
         }
         alert("Работа алгоритма завершена!");
