@@ -76,8 +76,8 @@ class AntColony {
         this.n = num_cities; // количество городов
         this.distances = dist_matrix;
         this.pheromone = new Array(num_cities).fill().map(() => new Array(num_cities).fill(1.0));
-        this.alpha = alpha; 
-        this.beta = beta;
+        this.alpha = alpha;//коэфицент расстояния между ферономонами 
+        this.beta = beta;//коэфицент расстояния между городами
         this.evaporation = evaporation; // скорость испарения феромона
         this.Q = q; // параметр Q для обновления феромонов
         this.ants_count = ant_count;
