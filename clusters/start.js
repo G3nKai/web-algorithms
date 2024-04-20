@@ -4,8 +4,8 @@ function run() {
     let temp = runner.value;
     console.log(k, points.length);
     if (k > points.length) alert('Кластеров больше, чем обозначенных точек.\nИзмените количество кластеров или добавьте новые точки!')
-    else if (temp == 'kmeans') kmeans();
-    else if (temp == 'jerarch') jerach();
+    else if (temp === 'kmeans') kmeans();
+    else if (temp === 'jerarch') jerach();
     else DBSCAN();
 }
 
